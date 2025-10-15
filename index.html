@@ -6,6 +6,24 @@
     <title>API</title>
 </head>
 <body>
-    <h1></h1>
+    <h1>Project Ideas</h1>
+    <ul id="project-list">
+    </ul>
 </body>
+<script>
+//js fetch api
+fetch('https://barrycumbie.github.io/redesigned-giggle-fetchAPI/appIdeas.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log('Project Idea:', data);
+        const projectList = document.getElementById('project-list');
+        data.projects.forEach(idea => {
+            console.log('Idea:', idea);
+            const listItem = document.createElement('li');
+            listItem.textContent = `${idea.name}: ${idea.description}`;
+            projectList.appendChild(listItem);
+        });
+    })
+    .catch(error => console.error('Error loading project idea:', error));
+</script>
 </html>
